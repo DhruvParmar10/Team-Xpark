@@ -5,7 +5,7 @@ import encodemsg
 import decodemsg
 intents = discord.Intents().all()
 
-token = 'ODAxODIwOTI4MTkxMjM0MDU4.YAmP7g.TmZnZV8LwAZA-ediln4MSLU70Zw'
+token = 'ODAxODIwOTI4MTkxMjM0MDU4.YAmP7g.0_5Rhc6kr8F470_yUvQlqbpe0-o'
 client = commands.Bot(command_prefix='#', intents=intents)
 
 
@@ -35,17 +35,22 @@ async def encode(ctx, person: discord.User, *, text):
     await person.dm_channel.send(embed=embed)
 
 @client.command()
-@commands.has_role('OP')
-async def decode(ctx, *, text):
-    await ctx.message.delete()
-    user = ctx.message.author.name
-    await ctx.send(f'**{user}**: {decodemsg.decode(text)}')
+# @commands.has_role('OP')
+async def decode(ctx,key ,* , text):
+    if key.lower() == 'yellow':
+        await ctx.message.delete()
+        user = ctx.message.author.name
+        await ctx.send(f'**{user}**: {decodemsg.decode(text)}')
+    else:
+        await ctx.message.delete()
+        await ctx.send('Your key is invalid!')
 
 @client.command()
 async def encode2(ctx, *, text):
     await ctx.message.delete()
     user = ctx.message.author.name
     await ctx.send(f'**{user}**: {encodemsg.encode(text)}')
+
 
 # @commands.command()
 # async def decodelol(ctx, *, text,  person: discord.User):
